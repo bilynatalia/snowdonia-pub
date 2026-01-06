@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.svelte';
+---
+
+<Layout 
+  title="About Us | Snowdonia Pub" 
+  canonicalPath="/about"
+  description="Welsh roots in Astoria. Snowdonia is NYC's longest-standing Welsh restaurant featuring comfort food prepared in-house to order."
+>
+  <Navbar slot="navbar" currentPath="/about" client:load />
+  
+  <section class="content-section">
+    <h2 class="section-title">The Vibe</h2>
+    <div class="split-layout">
+      <div class="text-content">
+        <p>
+          <strong>Welsh Roots in Astoria.</strong><br>
+          Snowdonia is NYC's longest-standing Welsh restaurant. We deliver a fusion of Welsh standards like fish and chips, burgers, and shepherds pie, plus rarer treats like glamorgans and laverbread.
+        </p>
+        <p>
+          Basically, it's comfort food all prepared in-house to order. Located at 34-55 32nd St, in the heart of Astoria's Kaufman Arts District.
+        </p>
+      </div>
+
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.566860642869!2d-73.9296402845943!3d40.75784437932697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25f31cc44f8fb%3A0xfeabf685e094609!2sSnowdonia!5e0!3m2!1sen!2sus!4v1709228945632!5m2!1sen!2sus" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+</Layout>

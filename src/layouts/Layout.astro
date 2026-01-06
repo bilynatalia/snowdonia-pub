@@ -1,0 +1,61 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonicalPath?: string;
+}
+
+const { 
+  title, 
+  description = "Snowdonia is NYC's longest-standing Welsh restaurant. We deliver a fusion of Welsh standards like fish and chips, burgers, and shepherds pie.",
+  canonicalPath = ""
+} = Astro.props;
+
+const siteUrl = "https://snowdoniapub.com";
+const canonicalUrl = `${siteUrl}${canonicalPath}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl}>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://images.squarespace-cdn.com/content/v1/5175d994e4b0e95e599a40ca/1604272403225-OADIDTHMI1I49TTT17XC/favicon.ico?format=100w" type="image/x-icon">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:url" content={canonicalUrl}>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Snowdonia Pub">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <a href="/">
+                <img src="https://images.squarespace-cdn.com/content/v1/5175d994e4b0e95e599a40ca/1604272463601-IJBLFLYWAP7DBKZ5MW49/black%2blogo26f7.jpg?format=1500w" alt="Snowdonia Pub Logo" class="logo-img">
+            </a>
+            
+            <slot name="navbar" />
+        </header>
+
+        <slot />
+
+        <footer>
+            © 2025 Snowdonia Pub. All Rights Reserved.<br>
+            All content subject to change at any time without notice.
+        </footer>
+    </div>
+</body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

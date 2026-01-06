@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.svelte';
+
+const pressItems = [
+  {
+    title: "A Place To Go After the Curtain Falls",
+    url: "http://www.nytimes.com/2014/10/12/nyregion/a-place-to-go-after-the-curtain-falls.html",
+    source: "New York Times"
+  },
+  {
+    title: "The Best New York Restaurants Funded By Kickstarter",
+    url: "http://www.businessinsider.com/best-new-york-restaurants-funded-by-kickstarter-2014-3?op=1",
+    source: "Business Insider"
+  },
+  {
+    title: "Astoria Gastropub Draws Local Brews",
+    url: "http://online.wsj.com/news/article_email/SB10001424052702303848104579308802347663812-lMyQjAxMTA0MDAwOTEwNDkyWj",
+    source: "The Wall Street Journal"
+  },
+  {
+    title: "The Restaurant for Astorians, From Astorians, Funded by Astorians",
+    url: "http://givemeastoria.com/snowdonia-the-restaurant-for-astorians-by-astorians-funded-by-astorians/",
+    source: "Give Me Astoria"
+  },
+  {
+    title: "Craft Beer Growler Deliveries On Tap For Astoria Gastropub",
+    url: "http://www.dnainfo.com/new-york/20140320/astoria/craft-beer-growler-deliveries-on-tap-for-astoria-gastropub",
+    source: "DNAinfo New York"
+  },
+  {
+    title: "Best Bites Of 2013",
+    url: "http://boromag.com/featured/best-bites-of-2013/",
+    source: "BORO Magazine"
+  },
+  {
+    title: "Signature Dish: Snowdonia Gastropub",
+    url: "http://queens.brownstoner.com/2013/12/signature-dish-snowdonia-gastropub/",
+    source: "Brownstoner Queens"
+  },
+  {
+    title: "Supping At Snowdonia",
+    url: "http://queenscourier.com/2014/supping-at-snowdonia/",
+    source: "Queens Courier"
+  },
+  {
+    title: "Snowdonia",
+    url: "http://southernastorian.wordpress.com/2014/03/10/snowdonia/",
+    source: "The Southern Astorian"
+  }
+];
+---
+
+<Layout 
+  title="Press & Accolades | Snowdonia Pub" 
+  canonicalPath="/press"
+  description="Read what the New York Times, Wall Street Journal, Business Insider and more say about Snowdonia Pub, NYC's Welsh gastropub."
+>
+  <Navbar slot="navbar" currentPath="/press" client:load />
+  
+  <section class="content-section">
+    <h2 class="section-title">Press & Accolades</h2>
+    
+    <ul class="press-list">
+      {pressItems.map(item => (
+        <li class="press-item">
+          <a href={item.url} target="_blank" rel="noopener noreferrer" class="press-link">
+            {item.title}
+          </a>
+          <span class="press-divider">|</span>
+          <span class="press-source">{item.source}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Layout>

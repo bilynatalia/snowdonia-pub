@@ -1,0 +1,305 @@
+/* --- RESET & BASIC SETUP --- */
+html {
+  scroll-behavior: smooth;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+  /* BACKGROUND KAYU (Sisi Luar) */
+  background-image: url("https://images.unsplash.com/photo-1542261777-4ad26125549a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: #3e2723;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Terapkan animasi ke bagian-bagian utama */
+header,
+.hero-section,
+.content-section,
+footer {
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+/* Delay animasi agar muncul berurutan */
+header {
+  animation-delay: 0.1s;
+}
+.hero-section {
+  animation-delay: 0.3s;
+}
+.content-section {
+  animation-delay: 0.5s;
+}
+footer {
+  animation-delay: 0.7s;
+}
+
+/* --- MAIN WRAPPER (Kotak Hitam di Tengah) --- */
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #0f0f0f;
+  min-height: 100vh;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+  border-left: 1px solid #222;
+  border-right: 1px solid #222;
+  position: relative;
+}
+
+/* --- HEADER & LOGO --- */
+header {
+  text-align: center;
+  padding: 3rem 1rem 0 1rem;
+  background-color: #0f0f0f;
+}
+
+.logo-img {
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1.5rem auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
+}
+
+/* --- NAVIGATION --- */
+nav {
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  padding: 1.2rem 0;
+  background-color: #0f0f0f;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+nav a {
+  text-decoration: none;
+  color: #ddd;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  transition: color 0.3s, letter-spacing 0.3s;
+  position: relative;
+}
+
+nav a:hover,
+nav a.active {
+  color: #d35400;
+  letter-spacing: 3px;
+}
+
+/* --- HERO IMAGE --- */
+.hero-section {
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-image: url("https://images.squarespace-cdn.com/content/v1/5175d994e4b0e95e599a40ca/1604271774058-Q8LTF5LJV2F5HLREJNMA/fish+and+chips+%28reduced%29.jpg?format=1500w");
+  background-position: center;
+  background-size: cover;
+  filter: brightness(0.9);
+  transition: transform 10s linear;
+}
+
+.hero-section:hover .hero-image {
+  transform: scale(1.1);
+}
+
+/* --- CONTENT SECTIONS --- */
+.content-section {
+  padding: 4rem 3rem;
+  text-align: left;
+  border-bottom: 1px solid #222;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #d35400;
+  margin: 1rem auto 0 auto;
+  transition: width 0.3s;
+}
+
+.content-section:hover .section-title::after {
+  width: 120px;
+}
+
+p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  color: #ccc;
+  text-align: center;
+}
+
+/* --- ABOUT & MAP (GRID) --- */
+.split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.text-content p {
+  text-align: left;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 350px;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* --- MENU SECTION --- */
+.menu-container {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #151515;
+  border-radius: 4px;
+  transition: transform 0.3s;
+}
+
+.menu-container:hover {
+  transform: translateY(-5px);
+}
+
+.menu-container img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border: 1px solid #333;
+}
+
+/* --- PRESS SECTION (CLICKABLE LINKS) --- */
+.press-list {
+  list-style: none;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.press-item {
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.press-link {
+  color: #e67e22;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.press-link:hover {
+  color: #ff9f43;
+  text-decoration: none;
+  transform: scale(1.02);
+}
+
+.press-divider {
+  color: #555;
+  margin: 0 8px;
+}
+
+.press-source {
+  color: #fff;
+  font-weight: bold;
+}
+
+/* --- FOOTER --- */
+footer {
+  background-color: #000;
+  color: #777;
+  text-align: center;
+  padding: 3rem 1rem;
+  font-size: 0.85rem;
+  border-top: 1px solid #222;
+}
+
+.footer-credit {
+  color: #d35400;
+}
+
+/* --- RESPONSIVE (HP) --- */
+@media (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+    border: none;
+  }
+  body {
+    background-image: none;
+    background-color: #0f0f0f;
+  }
+  nav ul {
+    gap: 1rem;
+    font-size: 0.8rem;
+  }
+  .split-layout {
+    grid-template-columns: 1fr;
+  }
+  .content-section {
+    padding: 3rem 1.5rem;
+  }
+  .hero-section {
+    height: 250px;
+  }
+  .press-item {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+}

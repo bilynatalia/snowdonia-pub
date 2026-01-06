@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.svelte';
+---
+
+<Layout 
+  title="Snowdonia Pub | Welsh Gastropub Astoria" 
+  canonicalPath="/"
+  description="NYC's longest-standing Welsh restaurant. Fish and chips, burgers, shepherds pie, and more. Located in Astoria's Kaufman Arts District."
+>
+  <Navbar slot="navbar" currentPath="/" client:load />
+  
+  <div class="hero-section">
+    <div class="hero-image"></div>
+  </div>
+  
+  <section class="content-section">
+    <h2 class="section-title">Welcome to Snowdonia</h2>
+    <p>
+      NYC's longest-standing Welsh restaurant, located in the heart of Astoria's Kaufman Arts District.
+    </p>
+    <p>
+      We deliver a fusion of Welsh standards like fish and chips, burgers, and shepherds pie, plus rarer treats like glamorgans and laverbread.
+    </p>
+  </section>
+</Layout>

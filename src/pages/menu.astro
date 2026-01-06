@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.svelte';
+---
+
+<Layout 
+  title="Menu | Snowdonia Pub" 
+  canonicalPath="/menu"
+  description="Spring 2025 menu at Snowdonia Pub. Fresh ingredients, prepared in-house. Welsh gastropub favorites in Astoria, NYC."
+>
+  <Navbar slot="navbar" currentPath="/menu" client:load />
+  
+  <section class="content-section">
+    <h2 class="section-title">Our Menu</h2>
+    <p>Spring 2025 Selection. Fresh ingredients, prepared in-house.</p>
+    
+    <div class="menu-container">
+      <img src="https://cloudassetskita.com/uploads/spring-2025-menu-1-cad36a18.webp" alt="Spring 2025 Menu Snowdonia Pub">
+    </div>
+  </section>
+</Layout>
