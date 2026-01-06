@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snowdonia Pub | Welsh Gastropub Astoria</title>
+    
+    <!-- FAVICON -->
+    <link rel="icon" href="https://images.squarespace-cdn.com/content/v1/5175d994e4b0e95e599a40ca/1604272403225-OADIDTHMI1I49TTT17XC/favicon.ico?format=100w" type="image/x-icon">
+
+    <style>
+        /* --- RESET & BASIC SETUP --- */
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        
+        body {
+            /* BACKGROUND KAYU (Sisi Luar) */
+            background-image: url('https://images.unsplash.com/photo-1542261777-4ad26125549a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-color: #3e2723;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Terapkan animasi ke bagian-bagian utama */
+        header, .hero-section, .content-section, footer {
+            opacity: 0; /* Sembunyikan awal */
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        /* Delay animasi agar muncul berurutan */
+        header { animation-delay: 0.1s; }
+        .hero-section { animation-delay: 0.3s; }
+        #about { animation-delay: 0.5s; }
+        #menu { animation-delay: 0.7s; }
+        #press { animation-delay: 0.9s; }
+        footer { animation-delay: 1.1s; }
+
+        /* --- MAIN WRAPPER (Kotak Hitam di Tengah) --- */
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #0f0f0f; /* Hitam Pekat */
+            min-height: 100vh;
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            border-left: 1px solid #222;
+            border-right: 1px solid #222;
+            position: relative;
+        }
+
+        /* --- HEADER & LOGO --- */
+        header {
+            text-align: center;
+            padding: 3rem 1rem 0 1rem;
+            background-color: #0f0f0f;
+        }
+
+        .logo-img {
+            max-width: 300px;
+            height: auto;
+            display: block;
+            margin: 0 auto 1.5rem auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05); /* Sedikit zoom saat hover logo */
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            padding: 1.2rem 0;
+            background-color: #0f0f0f;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ddd;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            transition: color 0.3s, letter-spacing 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #d35400; /* Warna aksen orange */
+            letter-spacing: 3px; /* Efek merenggang sedikit saat hover */
+        }
+
+        /* --- HERO IMAGE --- */
+        .hero-section {
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* URL GAMBAR IKAN & CHIPS */
+            background-image: url('https://images.squarespace-cdn.com/content/v1/5175d994e4b0e95e599a40ca/1604271774058-Q8LTF5LJV2F5HLREJNMA/fish+and+chips+%28reduced%29.jpg?format=1500w');
+            background-position: center;
+            background-size: cover;
+            filter: brightness(0.9);
+            transition: transform 10s linear;
+        }
+
+        /* Efek Zoom in pelan pada background hero */
+        .hero-section:hover .hero-image {
+            transform: scale(1.1);
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        .content-section {
+            padding: 4rem 3rem;
+            text-align: left;
+            border-bottom: 1px solid #222;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #fff;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #d35400;
+            margin: 1rem auto 0 auto;
+            transition: width 0.3s;
+        }
+        
+        .content-section:hover .section-title::after {
+            width: 120px; /* Garis bawah memanjang saat hover section */
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #ccc;
+            text-align: center;
+        }
+
+        /* --- ABOUT & MAP (GRID) --- */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .text-content p { text-align: left; }
+
+        .map-container iframe {
+            width: 100%;
+            height: 350px;
+            border: 0;
+            /* FILTER DIHAPUS agar peta berwarna */
+            /* filter: grayscale(100%) invert(92%) contrast(83%); */
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        /* --- MENU SECTION --- */
+        .menu-container {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #151515;
+            border-radius: 4px;
+            transition: transform 0.3s;
+        }
+
+        .menu-container:hover {
+            transform: translateY(-5px); /* Efek angkat sedikit */
+        }
+        
+        .menu-container img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border: 1px solid #333;
+        }
+
+        /* --- PRESS SECTION (CLICKABLE LINKS) --- */
+        .press-list {
+            list-style: none;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .press-item {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            line-height: 1.4;
+        }
+
+        /* Gaya Link Press */
+        .press-link {
+            color: #e67e22; /* Warna Oranye agar terlihat sebagai link */
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .press-link:hover {
+            color: #ff9f43; /* Warna lebih terang saat hover */
+            text-decoration: none;
+            transform: scale(1.02); /* Sedikit membesar saat hover */
+        }
+
+        .press-divider {
+            color: #555;
+            margin: 0 8px;
+        }
+
+        .press-source {
+            color: #fff; /* Warna putih untuk nama media */
+            font-weight: bold;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #000;
+            color: #777;
+            text-align: center;
+            padding: 3rem 1rem;
+            font-size: 0.85rem;
+            border-top: 1px solid #222;
+        }
+        
+        .footer-credit { color: #d35400; }
+
+        /* --- RESPONSIVE (HP) --- */
+        @media (max-width: 768px) {
+            .wrapper { width: 100%; border: none; }
+            body { background-image: none; background-color: #0f0f0f; }
+            .nav ul { gap: 1rem; font-size: 0.8rem; }
+            .split-layout { grid-template-columns: 1fr; }
+            .content-section { padding: 3rem 1.5rem; }
+            .hero-section { height: 250px; }
+            .press-item { font-size: 0.9rem; margin-bottom: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        
+        <header>
+            <!-- LOGO -->
+            <img src="https://images.squarespace-cdn.com/content/v1/5175d994e4b0e95e599a40ca/1604272463601-IJBLFLYWAP7DBKZ5MW49/black%2blogo26f7.jpg?format=1500w" alt="Snowdonia Pub Logo" class="logo-img">
+            
+            <!-- NAVBAR -->
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#press">Press</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- HERO IMAGE (MAKANAN) -->
+        <div id="home" class="hero-section">
+            <div class="hero-image"></div>
+        </div>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="content-section">
+            <h2 class="section-title">The Vibe</h2>
+            <div class="split-layout">
+                <div class="text-content">
+                    <p>
+                        <strong>Welsh Roots in Astoria.</strong><br>
+                        Snowdonia is NYC’s longest-standing Welsh restaurant. We deliver a fusion of Welsh standards like fish and chips, burgers, and shepherds pie, plus rarer treats like glamorgans and laverbread.
+                    </p>
+                    <p>
+                        Basically, it's comfort food all prepared in-house to order. Located at 34-55 32nd St, in the heart of Astoria's Kaufman Arts District.
+                    </p>
+                </div>
+
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.566860642869!2d-73.9296402845943!3d40.75784437932697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25f31cc44f8fb%3A0xfeabf685e094609!2sSnowdonia!5e0!3m2!1sen!2sus!4v1709228945632!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- MENU SECTION -->
+        <section id="menu" class="content-section">
+            <h2 class="section-title">Our Menu</h2>
+            <p>Spring 2025 Selection. Fresh ingredients, prepared in-house.</p>
+            
+            <div class="menu-container">
+                <img src="https://cloudassetskita.com/uploads/spring-2025-menu-1-cad36a18.webp" alt="Spring 2025 Menu Snowdonia Pub">
+            </div>
+        </section>
+
+        <!-- PRESS SECTION (CLICKABLE LINKS) -->
+        <section id="press" class="content-section">
+            <h2 class="section-title">Press & Accolades</h2>
+            
+            <ul class="press-list">
+                <!-- Item 1 -->
+                <li class="press-item">
+                    <a href="http://www.nytimes.com/2014/10/12/nyregion/a-place-to-go-after-the-curtain-falls.html" target="_blank" rel="noopener noreferrer" class="press-link">
+                        A Place To Go After the Curtain Falls
+                    </a> 
+                    <span class="press-divider">|</span> 
+                    <span class="press-source">New York Times</span>
+                </li>
+
+                <!-- Item 2 -->
+                <li class="press-item">
+                    <a href="http://www.businessinsider.com/best-new-york-restaurants-funded-by-kickstarter-2014-3?op=1" target="_blank" rel="noopener noreferrer" class="press-link">
+                        The Best New York Restaurants Funded By Kickstarter
+                    </a> 
+                    <span class="press-divider">|</span> 
+                    <span class="press-source">Business Insider</span>
+                </li>
+
+                <!-- Item 3 -->
+                <li class="press-item">
+                    <a href="http://online.wsj.com/news/article_email/SB10001424052702303848104579308802347663812-lMyQjAxMTA0MDAwOTEwNDkyWj" target="_blank" rel="noopener noreferrer" class="press-link">
+                        Astoria Gastropub Draws Local Brews
+                    </a> 
+                    <span class="press-divider">|</span> 
+                    <span class="press-source">The Wall Street Journal</span>
+                </li>
+
+                <!-- Item 4 -->
+                <li class="press-item">
+                    <a href="http://givemeastoria.com/snowdonia-the-restaurant-for-astorians-by-astorians-funded-by-astorians/" target="_blank" rel="noopener noreferrer" class="press-link">
+                        The Restaurant for Astorians, From Astorians, Funded by Astorians
+                    </a> 
+                    <span class="press-divider">|</span> 
+                    <span class="press-source">Give Me Astoria</span>
+                </li>
+
+                <!-- Item 5 -->
+                <li class="press-item">
+                    <a href="http://www.dnainfo.com/new-york/20140320/astoria/craft-beer-growler-deliveries-on-tap-for-astoria-gastropub" target="_blank" rel="noopener noreferrer" class="press-link">
+                        Craft Beer Growler Deliveries On Tap For Astoria Gastropub
+                    </a> 
+                    <span class="press-divider">|</span> 
+                    <span class="press-source">DNAinfo New York</span>
+                </li>
+
+                <!-- Item 6 -->
+                <li class="press-item">
+                    <a href="http://boromag.com/featured/best-bites-of-2013/" target="_blank" rel="noopener noreferrer" class="press-link">
+                        Best Bites Of 2013
+                    </a> 
+                    <span class="press-divider">|</span> 
+                    <span class="press-source">BORO Magazine</span>
+                </li>
+
+                <!-- Item 7 -->
+                <li class="press-item">
+                    <a href="http://queens.brownstoner.com/2013/12/signature-dish-snowdonia-gastropub/" target="_blank" rel="noopener noreferrer" class="press-link">
+                        Signature Dish: Snowdonia Gastropub
+                    </a> 
+                    <span class="press-divider">|</span> 
+                    <span class="press-source">Brownstoner Queens</span>
+                </li>
+
+                <!-- Item 8 -->
+                <li class="press-item">
+                    <a href="http://queenscourier.com/2014/supping-at-snowdonia/" target="_blank" rel="noopener noreferrer" class="press-link">
+                        Supping At Snowdonia
+                    </a> 
+                    <span class="press-divider">|</span> 
+                    <span class="press-source">Queens Courier</span>
+                </li>
+
+                <!-- Item 9 -->
+                <li class="press-item">
+                    <a href="http://southernastorian.wordpress.com/2014/03/10/snowdonia/" target="_blank" rel="noopener noreferrer" class="press-link">
+                        Snowdonia
+                    </a> 
+                    <span class="press-divider">|</span> 
+                    <span class="press-source">The Southern Astorian</span>
+                </li>
+            </ul>
+        </section>
+
+        <footer>
+            © 2025 Snowdonia Pub. All Rights Reserved.<br>
+            All content subject to change at any time without notice.
+        </footer>
+
+    </div>
+
+</body>
+</html>
