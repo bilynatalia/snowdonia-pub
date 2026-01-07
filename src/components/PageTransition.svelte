@@ -7,29 +7,38 @@
 -->
 
 <script lang="ts">
-  import { fly } from 'svelte/transition';
-  import { onMount } from 'svelte';
-  
+  import { fly } from "svelte/transition";
+  import { onMount } from "svelte";
+  import type { Snippet } from "svelte";
+
+  interface Props {
+    children: Snippet;
+  }
+
+  let { children }: Props = $props();
+
   let visible = $state(false);
   let prefersReducedMotion = $state(false);
-  
+
   onMount(() => {
     // Check reduced motion preference
-    prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
     visible = true;
   });
 </script>
 
 {#if visible}
-  <div 
+  <div
     class="page-content"
-    in:fly={{ 
-      y: prefersReducedMotion ? 0 : 20, 
+    in:fly={{
+      y: prefersReducedMotion ? 0 : 20,
       duration: prefersReducedMotion ? 0 : 500,
-      delay: 100
+      delay: 100,
     }}
   >
-    <slot />
+    {@render children()}
   </div>
 {/if}
 
