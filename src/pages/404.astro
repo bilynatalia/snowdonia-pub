@@ -1,4 +1,313 @@
 ---
-// 404.astro - Redirect all 404 errors to homepage with 301
-return Astro.redirect('/', 301);
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.svelte";
+import MountainMist from "../components/MountainMist.svelte";
+import BeerBubbles from "../components/BeerBubbles.svelte";
 ---
+
+<Layout
+  title="Page Not Found | Snowdonia Pub"
+  canonicalPath="/404"
+  description="The page you're looking for seems to have wandered off. Head back to Snowdonia Pub for Welsh gastropub favorites in Astoria, NYC."
+>
+  <Navbar slot="navbar" currentPath="" client:load />
+
+  <section class="error-section">
+    <div class="error-content">
+      <!-- Animated accent -->
+      <div class="bubbles-accent">
+        <BeerBubbles client:load />
+      </div>
+
+      <!-- 404 Display -->
+      <div class="error-code">
+        <span class="digit">4</span>
+        <span class="digit pint">🍺</span>
+        <span class="digit">4</span>
+      </div>
+
+      <h1 class="error-title">Page Not Found</h1>
+
+      <p class="error-message">
+        Looks like this page wandered off into the Welsh hills.<br />
+        Don't worry—the pub is still open!
+      </p>
+
+      <!-- CTAs -->
+      <div class="cta-container">
+        <a href="/" class="cta-button primary">
+          <span class="cta-icon">🏠</span>
+          Back to Home
+        </a>
+        <a href="/menu" class="cta-button secondary">
+          <span class="cta-icon">📜</span>
+          View Menu
+        </a>
+        <a href="/about" class="cta-button tertiary">
+          <span class="cta-icon">📍</span>
+          Find Us
+        </a>
+      </div>
+
+      <p class="error-hint">
+        Or explore our <a href="/press">press coverage</a> to see why people love
+        us.
+      </p>
+    </div>
+
+    <!-- Mountain silhouette with mist -->
+    <MountainMist client:load />
+  </section>
+</Layout>
+
+<style>
+  .error-section {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      to bottom,
+      #0f0f0f 0%,
+      #151515 50%,
+      #1a1a1a 100%
+    );
+  }
+
+  .error-content {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+  }
+
+  .bubbles-accent {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 200px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .error-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.1s forwards;
+  }
+
+  .digit {
+    font-size: 5rem;
+    font-weight: 800;
+    color: #d35400;
+    text-shadow:
+      0 0 20px rgba(211, 84, 0, 0.3),
+      0 4px 8px rgba(0, 0, 0, 0.5);
+    line-height: 1;
+  }
+
+  .digit.pint {
+    font-size: 4rem;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .error-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.2s forwards;
+  }
+
+  .error-message {
+    font-size: 1.1rem;
+    color: #aaa;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.3s forwards;
+  }
+
+  .cta-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.4s forwards;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.3s ease,
+      background-color 0.3s ease;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-3px);
+  }
+
+  .cta-button:focus {
+    outline: 2px solid #d35400;
+    outline-offset: 2px;
+  }
+
+  .cta-button.primary {
+    background: linear-gradient(135deg, #d35400, #e67e22);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(211, 84, 0, 0.3);
+  }
+
+  .cta-button.primary:hover {
+    box-shadow: 0 8px 25px rgba(211, 84, 0, 0.4);
+  }
+
+  .cta-button.secondary {
+    background: #252525;
+    color: #ddd;
+    border: 1px solid #333;
+  }
+
+  .cta-button.secondary:hover {
+    background: #2a2a2a;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .cta-button.tertiary {
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #444;
+  }
+
+  .cta-button.tertiary:hover {
+    color: #ddd;
+    border-color: #555;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .cta-icon {
+    font-size: 1.1rem;
+  }
+
+  .error-hint {
+    font-size: 0.9rem;
+    color: #666;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.5s forwards;
+  }
+
+  .error-hint a {
+    color: #e67e22;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .error-hint a:hover {
+    color: #ff9f43;
+    text-decoration: underline;
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-5deg);
+    }
+    50% {
+      transform: translateY(-8px) rotate(5deg);
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .error-code,
+    .error-title,
+    .error-message,
+    .cta-container,
+    .error-hint {
+      opacity: 1;
+      animation: none;
+    }
+
+    .digit.pint {
+      animation: none;
+    }
+
+    .cta-button:hover {
+      transform: none;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .error-section {
+      min-height: 60vh;
+      padding: 3rem 1.5rem;
+    }
+
+    .digit {
+      font-size: 3.5rem;
+    }
+
+    .digit.pint {
+      font-size: 3rem;
+    }
+
+    .error-title {
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+    }
+
+    .error-message {
+      font-size: 1rem;
+    }
+
+    .cta-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-button {
+      width: 100%;
+      max-width: 250px;
+      justify-content: center;
+    }
+  }
+</style>
