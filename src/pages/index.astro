@@ -1,17 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.svelte';
+import BeerBubbles from '../components/BeerBubbles.svelte';
 ---
 
 <Layout 
   title="Snowdonia Pub | Welsh Gastropub Astoria" 
   canonicalPath="/"
   description="NYC's longest-standing Welsh restaurant. Fish and chips, burgers, shepherds pie, and more. Located in Astoria's Kaufman Arts District."
+  showBubbles={true}
 >
   <Navbar slot="navbar" currentPath="/" client:load />
   
   <div class="hero-section">
+    <BeerBubbles client:load />
     <div class="hero-image"></div>
+    <div class="hero-overlay"></div>
   </div>
   
   <section class="content-section">
@@ -24,3 +28,22 @@ import Navbar from '../components/Navbar.svelte';
     </p>
   </section>
 </Layout>
+
+<style>
+  .hero-section {
+    position: relative;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(15, 15, 15, 0) 0%,
+      rgba(15, 15, 15, 0) 60%,
+      rgba(15, 15, 15, 0.8) 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+</style>

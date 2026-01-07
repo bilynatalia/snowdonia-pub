@@ -1,7 +1,12 @@
+/* ==============================================
+   SNOWDONIA PUB - GLOBAL STYLES
+   ============================================== */
+
 /* --- RESET & BASIC SETUP --- */
 html {
   scroll-behavior: smooth;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -18,41 +23,6 @@ body {
   background-color: #3e2723;
   color: #ffffff;
   line-height: 1.6;
-}
-
-/* --- ANIMATIONS --- */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Terapkan animasi ke bagian-bagian utama */
-header,
-.hero-section,
-.content-section,
-footer {
-  opacity: 0;
-  animation: fadeInUp 1s ease-out forwards;
-}
-
-/* Delay animasi agar muncul berurutan */
-header {
-  animation-delay: 0.1s;
-}
-.hero-section {
-  animation-delay: 0.3s;
-}
-.content-section {
-  animation-delay: 0.5s;
-}
-footer {
-  animation-delay: 0.7s;
 }
 
 /* --- MAIN WRAPPER (Kotak Hitam di Tengah) --- */
@@ -72,6 +42,9 @@ header {
   text-align: center;
   padding: 3rem 1rem 0 1rem;
   background-color: #0f0f0f;
+  opacity: 0;
+  animation: fadeInUp var(--animation-duration, 0.6s) var(--animation-easing, ease-out) forwards;
+  animation-delay: 0.1s;
 }
 
 .logo-img {
@@ -79,47 +52,11 @@ header {
   height: auto;
   display: block;
   margin: 0 auto 1.5rem auto;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s var(--animation-easing, ease);
 }
 
 .logo-img:hover {
   transform: scale(1.05);
-}
-
-/* --- NAVIGATION --- */
-nav {
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #333;
-  padding: 1.2rem 0;
-  background-color: #0f0f0f;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-}
-
-nav a {
-  text-decoration: none;
-  color: #ddd;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.9rem;
-  transition: color 0.3s, letter-spacing 0.3s;
-  position: relative;
-}
-
-nav a:hover,
-nav a.active {
-  color: #d35400;
-  letter-spacing: 3px;
 }
 
 /* --- HERO IMAGE --- */
@@ -128,6 +65,9 @@ nav a.active {
   height: 450px;
   overflow: hidden;
   position: relative;
+  opacity: 0;
+  animation: fadeInUp var(--animation-duration, 0.6s) var(--animation-easing, ease-out) forwards;
+  animation-delay: 0.2s;
 }
 
 .hero-image {
@@ -138,11 +78,12 @@ nav a.active {
   background-position: center;
   background-size: cover;
   filter: brightness(0.9);
-  transition: transform 10s linear;
+  transition: transform 8s ease-out;
+  z-index: 0;
 }
 
 .hero-section:hover .hero-image {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 /* --- CONTENT SECTIONS --- */
@@ -150,6 +91,9 @@ nav a.active {
   padding: 4rem 3rem;
   text-align: left;
   border-bottom: 1px solid #222;
+  opacity: 0;
+  animation: fadeInUp var(--animation-duration, 0.6s) var(--animation-easing, ease-out) forwards;
+  animation-delay: 0.4s;
 }
 
 .section-title {
@@ -159,6 +103,7 @@ nav a.active {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 3px;
+  position: relative;
 }
 
 .section-title::after {
@@ -166,13 +111,15 @@ nav a.active {
   display: block;
   width: 60px;
   height: 3px;
-  background: #d35400;
+  background: linear-gradient(90deg, #d35400, #e67e22);
   margin: 1rem auto 0 auto;
-  transition: width 0.3s;
+  transition: width 0.4s var(--animation-easing, ease);
+  border-radius: 2px;
 }
 
 .content-section:hover .section-title::after {
   width: 120px;
+  box-shadow: 0 0 15px rgba(211, 84, 0, 0.4);
 }
 
 p {
@@ -190,8 +137,20 @@ p {
   align-items: center;
 }
 
+.text-content {
+  opacity: 0;
+  animation: slideInLeft var(--animation-duration, 0.6s) var(--animation-easing, ease-out) forwards;
+  animation-delay: 0.5s;
+}
+
 .text-content p {
   text-align: left;
+}
+
+.map-container {
+  opacity: 0;
+  animation: slideInRight var(--animation-duration, 0.6s) var(--animation-easing, ease-out) forwards;
+  animation-delay: 0.6s;
 }
 
 .map-container iframe {
@@ -200,6 +159,11 @@ p {
   border: 0;
   border-radius: 4px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.map-container iframe:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
 }
 
 /* --- MENU SECTION --- */
@@ -209,11 +173,13 @@ p {
   padding: 1rem;
   background: #151515;
   border-radius: 4px;
-  transition: transform 0.3s;
+  transition: transform 0.3s var(--animation-easing, ease), 
+              box-shadow 0.3s var(--animation-easing, ease);
 }
 
 .menu-container:hover {
   transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
 
 .menu-container img {
@@ -221,6 +187,11 @@ p {
   max-width: 800px;
   height: auto;
   border: 1px solid #333;
+  transition: filter 0.3s ease;
+}
+
+.menu-container:hover img {
+  filter: brightness(1.05);
 }
 
 /* --- PRESS SECTION (CLICKABLE LINKS) --- */
@@ -235,20 +206,48 @@ p {
   margin-bottom: 1.2rem;
   font-size: 1.05rem;
   line-height: 1.4;
+  opacity: 0;
+  animation: fadeInUp var(--animation-duration, 0.6s) var(--animation-easing, ease-out) forwards;
 }
+
+/* Staggered animation for press items */
+.press-item:nth-child(1) { animation-delay: 0.1s; }
+.press-item:nth-child(2) { animation-delay: 0.15s; }
+.press-item:nth-child(3) { animation-delay: 0.2s; }
+.press-item:nth-child(4) { animation-delay: 0.25s; }
+.press-item:nth-child(5) { animation-delay: 0.3s; }
+.press-item:nth-child(6) { animation-delay: 0.35s; }
+.press-item:nth-child(7) { animation-delay: 0.4s; }
+.press-item:nth-child(8) { animation-delay: 0.45s; }
+.press-item:nth-child(9) { animation-delay: 0.5s; }
 
 .press-link {
   color: #e67e22;
   text-decoration: none;
   font-weight: 500;
-  transition: 0.3s;
+  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
   display: inline-block;
+  position: relative;
+}
+
+.press-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #ff9f43;
+  transition: width 0.3s ease;
 }
 
 .press-link:hover {
   color: #ff9f43;
-  text-decoration: none;
-  transform: scale(1.02);
+  text-shadow: 0 0 10px rgba(255, 159, 67, 0.3);
+}
+
+.press-link:hover::after {
+  width: 100%;
 }
 
 .press-divider {
@@ -269,6 +268,9 @@ footer {
   padding: 3rem 1rem;
   font-size: 0.85rem;
   border-top: 1px solid #222;
+  opacity: 0;
+  animation: fadeInUp var(--animation-duration, 0.6s) var(--animation-easing, ease-out) forwards;
+  animation-delay: 0.6s;
 }
 
 .footer-credit {
@@ -281,25 +283,58 @@ footer {
     width: 100%;
     border: none;
   }
+  
   body {
     background-image: none;
     background-color: #0f0f0f;
   }
-  nav ul {
-    gap: 1rem;
-    font-size: 0.8rem;
-  }
+  
   .split-layout {
     grid-template-columns: 1fr;
   }
+  
   .content-section {
     padding: 3rem 1.5rem;
   }
+  
   .hero-section {
     height: 250px;
   }
+  
   .press-item {
     font-size: 0.9rem;
     margin-bottom: 1.5rem;
+  }
+}
+
+/* --- ACCESSIBILITY: REDUCED MOTION --- */
+@media (prefers-reduced-motion: reduce) {
+  header,
+  .hero-section,
+  .content-section,
+  footer,
+  .text-content,
+  .map-container,
+  .press-item {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+  
+  .hero-image {
+    transition: none;
+  }
+  
+  .hero-section:hover .hero-image {
+    transform: none;
+  }
+  
+  .section-title::after {
+    transition: none;
+  }
+  
+  .content-section:hover .section-title::after {
+    width: 60px;
+    box-shadow: none;
   }
 }

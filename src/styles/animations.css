@@ -1,0 +1,276 @@
+/* ==============================================
+   SNOWDONIA PUB - ANIMATION SYSTEM
+   ==============================================
+   
+   CUSTOMIZATION:
+   - Adjust --animation-duration for global speed
+   - Adjust --animation-easing for motion feel
+   - All animations respect prefers-reduced-motion
+   
+   TO DISABLE ALL MOTION:
+   Set --animation-duration: 0s; or add:
+   * { animation: none !important; transition: none !important; }
+   
+   ============================================== */
+
+:root {
+  /* Animation Timing */
+  --animation-duration: 0.6s;
+  --animation-duration-fast: 0.3s;
+  --animation-duration-slow: 1.2s;
+
+  /* Easing Curves */
+  --animation-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  --animation-easing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animation-easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Stagger Delays */
+  --stagger-delay: 0.1s;
+
+  /* Ambient Animation */
+  --bubble-duration: 8s;
+}
+
+/* ==============================================
+   KEYFRAMES
+   ============================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmerLine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(211, 84, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(211, 84, 0, 0.6);
+  }
+}
+
+@keyframes bubbleRise {
+  0% {
+    transform: translateY(100%) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes underlineSlide {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ==============================================
+   SCROLL-TRIGGERED ANIMATIONS
+   ============================================== */
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--animation-duration) var(--animation-easing),
+    transform var(--animation-duration) var(--animation-easing);
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-on-scroll.slide-left {
+  transform: translateX(-40px);
+}
+
+.animate-on-scroll.slide-left.visible {
+  transform: translateX(0);
+}
+
+.animate-on-scroll.slide-right {
+  transform: translateX(40px);
+}
+
+.animate-on-scroll.slide-right.visible {
+  transform: translateX(0);
+}
+
+.animate-on-scroll.scale {
+  transform: scale(0.95);
+}
+
+.animate-on-scroll.scale.visible {
+  transform: scale(1);
+}
+
+/* Stagger delays for sequential animations */
+.stagger-1 {
+  transition-delay: calc(var(--stagger-delay) * 1);
+}
+.stagger-2 {
+  transition-delay: calc(var(--stagger-delay) * 2);
+}
+.stagger-3 {
+  transition-delay: calc(var(--stagger-delay) * 3);
+}
+.stagger-4 {
+  transition-delay: calc(var(--stagger-delay) * 4);
+}
+.stagger-5 {
+  transition-delay: calc(var(--stagger-delay) * 5);
+}
+
+/* ==============================================
+   PAGE ENTRY ANIMATIONS
+   ============================================== */
+
+.page-enter {
+  animation: fadeInUp var(--animation-duration) var(--animation-easing) forwards;
+}
+
+.page-enter-scale {
+  animation: fadeInScale var(--animation-duration) var(--animation-easing)
+    forwards;
+}
+
+/* ==============================================
+   MICRO-INTERACTIONS
+   ============================================== */
+
+/* Button hover lift */
+.hover-lift {
+  transition: transform var(--animation-duration-fast) var(--animation-easing),
+    box-shadow var(--animation-duration-fast) var(--animation-easing);
+}
+
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Card hover effect */
+.hover-glow {
+  transition: box-shadow var(--animation-duration-fast) var(--animation-easing);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(211, 84, 0, 0.2);
+}
+
+/* Float animation (for decorative elements) */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ==============================================
+   LOADING SHIMMER
+   ============================================== */
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(211, 84, 0, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmerLine 2s linear infinite;
+}
+
+/* ==============================================
+   ACCESSIBILITY: REDUCED MOTION
+   ============================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+
+  .float {
+    animation: none;
+  }
+
+  .bubble {
+    display: none;
+  }
+}

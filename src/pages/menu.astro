@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.svelte';
+import PageTransition from '../components/PageTransition.svelte';
 ---
 
 <Layout 
@@ -10,12 +11,14 @@ import Navbar from '../components/Navbar.svelte';
 >
   <Navbar slot="navbar" currentPath="/menu" client:load />
   
-  <section class="content-section">
-    <h2 class="section-title">Our Menu</h2>
-    <p>Spring 2025 Selection. Fresh ingredients, prepared in-house.</p>
-    
-    <div class="menu-container">
-      <img src="https://cloudassetskita.com/uploads/spring-2025-menu-1-cad36a18.webp" alt="Spring 2025 Menu Snowdonia Pub">
-    </div>
-  </section>
+  <PageTransition client:load>
+    <section class="content-section">
+      <h2 class="section-title">Our Menu</h2>
+      <p>Spring 2025 Selection. Fresh ingredients, prepared in-house.</p>
+      
+      <div class="menu-container">
+        <img src="https://cloudassetskita.com/uploads/spring-2025-menu-1-cad36a18.webp" alt="Spring 2025 Menu Snowdonia Pub">
+      </div>
+    </section>
+  </PageTransition>
 </Layout>

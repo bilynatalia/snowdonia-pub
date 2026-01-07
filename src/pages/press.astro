@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.svelte';
+import PageTransition from '../components/PageTransition.svelte';
 
 const pressItems = [
   {
@@ -58,19 +59,21 @@ const pressItems = [
 >
   <Navbar slot="navbar" currentPath="/press" client:load />
   
-  <section class="content-section">
-    <h2 class="section-title">Press & Accolades</h2>
-    
-    <ul class="press-list">
-      {pressItems.map(item => (
-        <li class="press-item">
-          <a href={item.url} target="_blank" rel="noopener noreferrer" class="press-link">
-            {item.title}
-          </a>
-          <span class="press-divider">|</span>
-          <span class="press-source">{item.source}</span>
-        </li>
-      ))}
-    </ul>
-  </section>
+  <PageTransition client:load>
+    <section class="content-section">
+      <h2 class="section-title">Press & Accolades</h2>
+      
+      <ul class="press-list">
+        {pressItems.map(item => (
+          <li class="press-item">
+            <a href={item.url} target="_blank" rel="noopener noreferrer" class="press-link">
+              {item.title}
+            </a>
+            <span class="press-divider">|</span>
+            <span class="press-source">{item.source}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </PageTransition>
 </Layout>

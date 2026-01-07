@@ -3,12 +3,14 @@ interface Props {
   title: string;
   description?: string;
   canonicalPath?: string;
+  showBubbles?: boolean;
 }
 
 const { 
   title, 
   description = "Snowdonia is NYC's longest-standing Welsh restaurant. We deliver a fusion of Welsh standards like fish and chips, burgers, and shepherds pie.",
-  canonicalPath = ""
+  canonicalPath = "",
+  showBubbles = false
 } = Astro.props;
 
 const siteUrl = "https://snowdoniapub.com";
@@ -39,14 +41,16 @@ const canonicalUrl = `${siteUrl}${canonicalPath}`;
 <body>
     <div class="wrapper">
         <header>
-            <a href="/">
+            <a href="/" class="logo-link">
                 <img src="https://images.squarespace-cdn.com/content/v1/5175d994e4b0e95e599a40ca/1604272463601-IJBLFLYWAP7DBKZ5MW49/black%2blogo26f7.jpg?format=1500w" alt="Snowdonia Pub Logo" class="logo-img">
             </a>
             
             <slot name="navbar" />
         </header>
 
-        <slot />
+        <main>
+            <slot />
+        </main>
 
         <footer>
             © 2025 Snowdonia Pub. All Rights Reserved.<br>
@@ -57,5 +61,6 @@ const canonicalUrl = `${siteUrl}${canonicalPath}`;
 </html>
 
 <style is:global>
+  @import '../styles/animations.css';
   @import '../styles/global.css';
 </style>
