@@ -1,23 +1,26 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.svelte';
-import PageTransition from '../components/PageTransition.svelte';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.svelte";
+import PageTransition from "../components/PageTransition.svelte";
 ---
 
-<Layout 
-  title="Menu | Snowdonia Pub" 
+<Layout
+  title="Menu | Snowdonia Pub"
   canonicalPath="/menu"
-  description="Spring 2025 menu at Snowdonia Pub. Fresh ingredients, prepared in-house. Welsh gastropub favorites in Astoria, NYC."
+  description="View Snowdonia Pub's Spring 2025 menu. Welsh gastropub classics: fish & chips, shepherd's pie, glamorgans, bangers & mash. Fresh ingredients, made in-house daily. Astoria, Queens NYC."
 >
   <Navbar slot="navbar" currentPath="/menu" client:load />
-  
+
   <PageTransition client:load>
     <section class="content-section">
       <h2 class="section-title">Our Menu</h2>
       <p>Spring 2025 Selection. Fresh ingredients, prepared in-house.</p>
-      
+
       <div class="menu-container">
-        <img src="https://cloudassetskita.com/uploads/spring-2025-menu-1-cad36a18.webp" alt="Spring 2025 Menu Snowdonia Pub">
+        <img
+          src="https://cloudassetskita.com/uploads/spring-2025-menu-1-cad36a18.webp"
+          alt="Spring 2025 Menu Snowdonia Pub"
+        />
       </div>
     </section>
   </PageTransition>
